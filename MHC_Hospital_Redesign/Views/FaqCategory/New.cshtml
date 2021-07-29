@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+<div class="back-link"><a href="/FaqCategory/List">Go back to list</a></div>
+<h2>Create New Faq Category</h2>
+<form action="/FaqCategory/Create" method="POST">
+<div>
+        <label>Date:</label>
+        <input type="text" name="CategoryDateAdded" />
+    </div>
+    <div>
+        <label>Name:</label>
+        <input type="text" name="CategoryName"/>
+    </div>
+    <div>
+        <label>Description:</label>
+        <input type="text" name="CategoryDescription"/>
+    </div>
+    <div>
+        <label>Category Color:</label>
+        <input type="color" name="CategoryColor"/>
+    </div>
+    <div class="btn">
+        <input class="btn btn-primary" type="submit" value="Add Faq Category" />
+
+    </div>
+</form>
+
+
+
+

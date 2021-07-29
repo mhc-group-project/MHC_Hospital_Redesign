@@ -1,0 +1,44 @@
+﻿@model  MHC_Hospital_Redesign.Models.ViewModels.DetailsFaq
+@{
+    ViewBag.Title = "View";
+}
+<nav class="back-up-del-nav">
+    <ul>
+        <li><a href="/Faq/List">Go back to list</a></li>
+        <li><a href="/Faq/Edit/@Model.SelectedFaq.FaqID">Update</a></li>
+        <li><a class="delete-tag" href="/Aircraft/DeleteConfirm/@Model.SelectedFaq.FaqID">Delete</a></li>
+    </ul>
+</nav>
+
+
+<h2>@Model.SelectedFaq.FaqQuestions</h2>
+<div>
+    <div class="detail-container">
+        <div>
+            <p>@Model.SelectedFaq.FaqAnswers</p>
+        </div>
+    </div>
+    <div class="relation-div aircraft-relationship">
+        <h2>FaqCategories Where this Faq is Listed</h2>
+        @foreach (var faqcategory in Model.LinkedFaqCategories)
+        {
+
+            <div class="relation-list"><a href="/FaqCategory/Details/@faqcategory.FaqCategoryID">@faqcategory.CategoryName</a><a style="color:#ab2020;" href="/Faq/Unassociate/@Model.SelectedFaq.FaqID?FaqCategoryID=@faqcategory.FaqCategoryID">[x]</a></div>
+        }
+
+        <div>
+            <h4>Add new Faq Category for this Faq to be listed into</h4>
+            <form method="POST" action="/Faq/Associate/@Model.SelectedFaq.FaqID">
+                <select class="form-select" name="FaqCategoryID">
+                    @foreach (var faqcategory in Model.AvailableFaqCategories)
+                    {
+                        <option value="@faqcategory.FaqCategoryID">@faqcategory.CategoryName</option>
+                    }
+
+                </select>
+                <input class="btn btn-primary" type="submit" value="Associate FaqCategory" />
+            </form>
+        </div>
+    </div>
+</div>
+

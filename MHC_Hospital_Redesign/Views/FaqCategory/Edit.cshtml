@@ -1,0 +1,38 @@
+﻿@model MHC_Hospital_Redesign.Models.FaqCategoryDto
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="back-link"><a href="/FaqCategory/Details">Go back to list</a></div>
+<h2>Update Faq Category</h2>
+<form action="/FaqCategory/Update/@Model.FaqCategoryID" method="POST">
+    <div style="display:none;">
+        @* Pass through the FaqCategory ID *@
+        <input type="text" name="FaqCategoryID" value="@Model.FaqCategoryID" />
+    </div>
+    <div>
+        <label>Date:</label>
+        <input type="text" name="CategoryDateAdded" value="@Model.CategoryDateAdded" />
+    </div>
+    <div>
+        <label>Name:</label>
+        <input type="text" name="CategoryName" value="@Model.CategoryName" />
+    </div>
+    <div>
+        <label>Description:</label>
+        <input type="text" name="CategoryDescription" value="@Model.CategoryDescription" />
+    </div>
+    <div>
+        <label>Category Color:</label>
+        <input type="color" name="CategoryColor" value="@Model.CategoryColor" />
+    </div>
+    <div class="btn">
+        <input class="btn btn-primary" type="submit" value="Update Faq Category" />
+
+    </div>
+</form>
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.FaqDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="list-heading">
+    <h2> Faqs</h2>
+
+</div>
+<div class="new-anchor-div">
+    <a class="new-anchor" href="/Faq/New">New Faq</a>
+</div>
+<div>
+    <form method="get" action="/Faq/List">
+        <input id="search" name="search" type="text" value="" />
+        <input class="btn btn-primary" type="submit" value="search" />
+    </form>
+</div>
+
+<div class="list-flex-container">
+    @foreach (var faq in Model)
+    {
+       
+
+        <div class="faq-list-div">
+            <h2 style="font-size:1.5em; font-weight:bold;"><a href="/Faq/Details/@faq.FaqID">@faq.FaqQuestions</a></h2>
+        </div>
+
+
+    }
+</div>

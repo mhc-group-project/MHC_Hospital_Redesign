@@ -1,0 +1,17 @@
+﻿@model MHC_Hospital_Redesign.Models.FaqCategoryDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+<div class="back-link"><a href="/FaqCategory/List">Cancel</a></div>
+
+<h2>Are you sure you want to delete this Category?</h2>
+<p style="color:red">This action cannot be undone</p>
+<h2>@Model.CategoryName</h2>
+<div>@Model.CategoryDescription</div>
+
+
+<form action="/FaqCategory/Delete/@Model.FaqCategoryID" method="POST">
+    <input style="margin:5em 0;" class="btn btn-danger" type="submit" value="Confirm Delete" />
+</form>
+
+

@@ -1,0 +1,34 @@
+﻿@model MHC_Hospital_Redesign.Models.FaqDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="back-link"><a href="/Faq/Details/@Model.FaqID">Go back</a></div>
+<h2>Update Faq</h2>
+<form action="/Faq/Update/@Model.FaqID" method="post">
+    <div style="display:none;">
+
+        <input type="text" name="FaqID" value="@Model.FaqID" />
+    </div>
+    <div>
+        <label>Date Added:</label>
+        <input type="text" name="DateAdded" value="@Model.DateAdded" /><span>Date Added:@Model.DateAdded</span>
+    </div>
+    <div>
+        <label>Question</label>
+        <input type="text" name="FaqQuestions" value="@Model.FaqQuestions" /><span>Current Questions:@Model.FaqAnswers</span>
+    </div>
+    <div>
+        <label>Answer</label>
+        <input type="text" name="FaqAnswers" value="@Model.FaqAnswers" /><span>Current Year:@Model.FaqAnswers</span>
+    </div>
+    <div>
+        <label>Faq Position:</label>
+        <input type="number" name="FaqSort" value="@Model.FaqSort" /><span>Current Max Speed:@Model.FaqSort</span>
+    </div>
+    
+    <div>
+        <input class="btn btn-primary" type="submit" value="Update Faq" />
+    </div>
+</form>
+

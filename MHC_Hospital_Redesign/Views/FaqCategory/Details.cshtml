@@ -1,0 +1,32 @@
+﻿@model MHC_Hospital_Redesign.Models.ViewModels.DetailsFaqCategory
+@{
+    ViewBag.Title = "Details";
+}
+<nav class="back-up-del-nav">
+    <ul>
+        <li><a href="/FaqCategory/List">Go back to list</a></li>
+        <li> <a href="/FaqCategory/Edit/@Model.SelectedFaqCategory.FaqCategoryID">Update</a></li>
+        <li> <a style="color:#ab2020;" href="/FaqCategory/DeleteConfirm/@Model.SelectedFaqCategory.FaqCategoryID">Delete</a></li>
+    </ul>
+
+</nav>
+<h2>@Model.SelectedFaqCategory.CategoryName</h2>
+<table>
+    <tr>
+        <th>Category Description:</th>
+        <td>@Model.SelectedFaqCategory.CategoryDescription</td>
+    </tr>
+
+
+</table>
+
+
+<div class="relation-div aircraft-relationship">
+    <h3>Faqs Under @Model.SelectedFaqCategory.CategoryName:</h3>
+    @foreach (var faq in Model.LinkedFaqs)
+    {
+        <div class="relation-list"><a class="relation-list" href="/Faq/Details/@faq.FaqID">@faq.FaqQuestions</a></div>
+        <div> @faq.FaqAnswers</div>
+    }
+</div>
+

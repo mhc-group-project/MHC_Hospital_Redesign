@@ -1,0 +1,31 @@
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.FaqDto>
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="back-link"><a href="/Faq/List">Go back to list</a></div>
+<h2>Add New FAQ</h2>
+<form action="/Faq/Create" method="post">
+    <div>
+        <label>Date Created:</label>
+        <input type="text" name="DateAdded" placeholder="YYYY-MM-DD" /><span>"YYYY-MM-DD"</span>
+    </div>
+    <div>
+        <label>Question:</label>
+        <input type="text" name="FaqQuestions" />
+    </div>
+    <div>
+        <label>Answer:</label>
+        <input type="text" name="FaqAnswers"<span>"YYYY-MM-DD"</span>
+    </div>
+    <div>
+        <label>Sort Order:</label>
+        <input type="number" name="FaqSort" />
+    </div>
+    <div class="btn">
+        <input class="btn btn-primary" type="submit" value="Add Faq" />
+    </div>
+</form>
+
+
