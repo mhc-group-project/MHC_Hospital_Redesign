@@ -1,0 +1,30 @@
+﻿@model MHC_Hospital_Redesign.Models.ViewModels.DetailsFeedbackCategory
+
+
+@{
+    ViewBag.Title = "View";
+}
+
+
+
+<nav>
+    <ul style="margin-top: 5px;">
+
+        <div><button type="button" class="btn btn-primary"><a style="color:white;" href="/FeedbackCategory/List">Go Back To List</a></button></div>
+        <br />
+
+        <div><button type="button" class="btn btn-success"><a style="color:white;" href="/FeedbackCategory/Edit/@Model.SelectedFeedbackCategory.FeedbackCategoryID">Update</a></button></div>
+        <br />
+
+        <div><button type="button" class="btn btn-danger"><a style="color:white;" href="/FeedbackCategory/DeleteConfirm/@Model.SelectedFeedbackCategory.FeedbackCategoryID">Delete</a></button></div>
+    </ul>
+</nav>
+
+
+<h2>Name:  @Model.SelectedFeedbackCategory.FeedbackCategoryName</h2>
+<h2>ID: @Model.SelectedFeedbackCategory.FeedbackCategoryID</h2>
+
+
+
+
+

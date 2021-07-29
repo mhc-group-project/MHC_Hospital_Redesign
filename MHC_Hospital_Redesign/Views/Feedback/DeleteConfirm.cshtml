@@ -1,0 +1,16 @@
+﻿@model MHC_Hospital_Redesign.Models.FeedbackDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Feedback?</h2>
+<a href="/Feedback/List">Cancel</a>
+<h2>@Model.FeedbackId</h2>
+<div>Feedback Category: @Model.FeedbackCategoryName</div>
+
+<form action="/Feedback/Delete/@Model.FeedbackId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>
+

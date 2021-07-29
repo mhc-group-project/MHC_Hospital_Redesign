@@ -194,7 +194,6 @@
     <Compile Include="Migrations\202107260329383_pendng-work.designer.cs">
       <DependentUpon>202107260329383_pendng-work.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Ecard.cs" />
     <Compile Include="Models\Template.cs" />

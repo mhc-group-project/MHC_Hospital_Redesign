@@ -1,0 +1,29 @@
+﻿@model MHC_Hospital_Redesign.Models.ViewModels.DetailsFeedback
+@{
+    ViewBag.Title = "View";
+}
+<h2>Feedback Details</h2>
+
+<div>Feedback ID: @Model.SelectedFeedback.FeedbackId</div>
+<nav>
+    <ul>
+
+        <div><button type="button" class="btn btn-primary"><a style="color:white;" href="/Feedback/List">Go Back To List</a></button></div>
+        <br />
+
+        <div><button type="button" class="btn btn-success"><a style="color:white;" href="/Feedback/Edit/@Model.SelectedFeedback.FeedbackId">Update</a></button></div>
+        <br />
+
+        <div><button type="button" class="btn btn-danger"><a style="color:white;" href="/Feedback/DeleteConfirm/@Model.SelectedFeedback.FeedbackId">Delete</a></button></div>
+    </ul>
+</nav>
+<div>Feedback Created on: @Model.SelectedFeedback.TimeStamp</div>
+<div>User Name: @Model.SelectedFeedback.UserName</div>
+<div>Feedback Category id: @Model.SelectedFeedback.FeedbackCategoryID</div>
+<div>Feedback Category: @Model.SelectedFeedback.FeedbackCategoryName</div>
+
+<div class="container">
+    <div>Feedback Content: @Model.SelectedFeedback.FeedbackContent</div>
+</div>
+
+

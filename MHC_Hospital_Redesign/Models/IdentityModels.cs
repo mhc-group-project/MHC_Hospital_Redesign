@@ -28,8 +28,14 @@ namespace MHC_Hospital_Redesign.Models
         public DbSet<Template> Templates { get; set; }
 
         public DbSet<Faq> Faqs { get; set; }
+       // public DbSet<Appointment> Appointments { get; set; }
+       // public DbSet<Department> Departments { get; set; }
 
         public DbSet<FaqCategory> FaqCategories { get; set; }
+
+       // public DbSet<Invoice> Invoices { get; set; }
+
+       // public DbSet<Payment> Payments { get; set; }
 
         public static ApplicationDbContext Create()
         {

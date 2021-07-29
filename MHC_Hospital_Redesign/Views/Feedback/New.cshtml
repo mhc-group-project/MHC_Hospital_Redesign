@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.FeedbackCategoryDto>
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Feedback</h2>
+
+<form action="/Feedback/Create" method="POST">
+    <div>
+        <label>User Name:</label> <input type="text" name="UserName" />
+    </div>
+    <div>
+        <label>Feedback Content:</label> <input type="text" name="FeedbackContent" />
+    </div>
+
+    <div>
+        <label>Feedback Department:</label>
+        <select name="FeedbackCategoryID">
+            @foreach (var feedbackCategory in Model)
+            {
+                <option value="@feedbackCategory.FeedbackCategoryID">@feedbackCategory.FeedbackCategoryName</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Feedback" />
+
+    </div>
+
+
+</form>
+

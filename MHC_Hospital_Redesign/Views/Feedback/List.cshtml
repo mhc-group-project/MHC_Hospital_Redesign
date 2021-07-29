@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.FeedbackDto>
+
+
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Feedbacks</h2>
+
+<a href="/Feedback/New">New Feedback</a>
+
+<div>
+    <h2>Search feedback by name:</h2>
+    <form action="/Feedback/List" method="GET">
+        <input type="text" name="SearchKey" />
+        <input type="submit" value="Search" />
+    </form>
+</div>
+<div class="row">
+
+    @foreach (var feedback in Model)
+    {
+
+        <div style="border-top:solid black 1px;" class="col-lg-4 col-md-6 col-sm-12">
+            <h2><a href="/Feedback/Details/@feedback.FeedbackId">@feedback.FeedbackContent</a></h2>
+            
+            <div>ID: @feedback.FeedbackId</div>
+            <div>Feedback Created on: @feedback.TimeStamp</div>
+
+
+        </div>
+    }
+
+</div>
+

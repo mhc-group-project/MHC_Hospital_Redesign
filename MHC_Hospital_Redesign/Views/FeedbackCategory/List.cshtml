@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.FeedbackCategoryDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Feedback Category</h2>
+<a href="/FeedbackCategory/New">New Feedback Category</a>
+@foreach (var FeedbackCategory in Model)
+{
+    <h2><a href="/FeedbackCategory/Details/@FeedbackCategory.FeedbackCategoryID">@FeedbackCategory.FeedbackCategoryName</a></h2>
+   
+
+}
+

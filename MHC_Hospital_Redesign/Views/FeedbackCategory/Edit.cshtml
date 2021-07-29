@@ -1,0 +1,23 @@
+﻿
+@model MHC_Hospital_Redesign.Models.FeedbackCategoryDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Feedback Category</h2>
+<form action="/FeedbackCategory/Update/@Model.FeedbackCategoryID" method="POST">
+    <div style="display:none;">
+        
+        <input type="text" name="FeedbackCategoryID" value="@Model.FeedbackCategoryID" />
+    </div>
+    <div>
+        <label>Name:</label> <input type="text" name="FeedbackCategoryName" value="@Model.FeedbackCategoryName" />
+    </div>
+
+    <div>
+        <input type="submit" value="Update FeedbackCategory" />
+
+    </div>
+</form>
+

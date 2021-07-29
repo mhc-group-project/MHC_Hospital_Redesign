@@ -1,0 +1,49 @@
+﻿@model MHC_Hospital_Redesign.Models.ViewModels.UpdateFeedback
+
+@{
+    ViewBag.Title = "Edit";
+   
+}
+
+<h2>Update Feedback</h2>
+<form action="/Feedback/Update/@Model.SelectedFeedback.FeedbackId" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="feedbackID">Feedback ID:</label>
+        <input type="text" class="form-control" name="FeedbackID" id="feedbackId" value="@Model.SelectedFeedback.FeedbackId" />
+    </div>
+    <div class="form-group">
+        <label for="UserName">User Name:</label>
+        <input type="text" class="form-control" name="UserName" id="UserName" value="@Model.SelectedFeedback.UserName" />
+    </div>
+    <div class="form-group">
+        <label for="FeedbackContent">Feedback Content:</label>
+        <input type="text" class="form-control" name="FeedbackContent" id="feedbackContent" value="@Model.SelectedFeedback.FeedbackContent" />
+    </div>
+
+    <div>
+        <label>Feedback Category:</label>
+
+        <select name="FeedbackCategoryID">
+            @foreach (var feedbackCategory in Model.FeedbackCategoryOptions)
+            {
+                string selected = "";
+                if (feedbackCategory.FeedbackCategoryName == Model.SelectedFeedback.FeedbackCategoryName)
+                {
+                    selected = "selected";
+                }
+                <option value="@feedbackCategory.FeedbackCategoryID" @selected>@feedbackCategory.FeedbackCategoryName</option>
+
+            }
+
+        </select><br />
+    </div>
+
+
+
+    <div>
+        <input type="submit" value="Update Feedback" />
+
+    </div>
+</form>
+
+
