@@ -1,7 +1,26 @@
-﻿
+﻿@model MHC_Hospital_Redesign.Models.PaymentDto
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div>
+    <a href="/Payment/List">Back to List</a>
+    <a href="/Payment/Edit/@Model.PaymentID">Update</a>
+    <a href="/Payment/DeleteConfirmation/@Model.PaymentID">Delete</a>
+</div>
 
+<div>
+    <h2>Payment for Invoice @Model.InvoiceNumber</h2>
+    <div>
+        <h3>Personal Details</h3>
+        <p>Full Name: @Model.NameOnCard</p>
+        <p>Address: @Model.Address</p>
+        <p>Postal Code: @Model.PostalCode</p>
+        <p>City: @Model.City</p>
+        <p>Province: @Model.Province</p>
+        <p>Country: @Model.Country</p>
+    </div>
+    <div>
+        <h3>Payment Details</h3>
+    </div>
+</div>

@@ -1,7 +1,17 @@
-﻿
+﻿@model MHC_Hospital_Redesign.Models.PaymentDto
 @{
     ViewBag.Title = "DeleteConfirmation";
 }
 
-<h2>DeleteConfirmation</h2>
+<nav>
+    <a href="/Payment/List">Cancel</a>
+</nav>
 
+<div>
+    <h2>Confirm Deletion</h2>
+    <p>Are you sure you want to delete payment related to <strong class="delTxt">Invoice number -> @Model.InvoiceNumber</strong>?</p>
+
+    <form action="/Payment/Delete/@Model.PaymentID">
+        <button type="submit">Confirm Delete</button>
+    </form>
+</div>

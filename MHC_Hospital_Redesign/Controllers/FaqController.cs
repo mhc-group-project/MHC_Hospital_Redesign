@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity.Migrations;
 using System.Web.Mvc;
 using System.Net.Http;
 using MHC_Hospital_Redesign.Models;
@@ -13,7 +14,9 @@ namespace MHC_Hospital_Redesign.Controllers
 {
     public class FaqController : Controller
 
-    { 
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private static readonly HttpClient client;
     private JavaScriptSerializer jss = new JavaScriptSerializer();
 
@@ -53,8 +56,14 @@ namespace MHC_Hospital_Redesign.Controllers
             return;
         }
 
-
-        // GET: Faq/List
+        /// <summary>
+        /// Lists all Faq irespective of the category according to FaqSort
+        /// </summary>
+        /// <param name="Search">Search bar to search Faq by KeyWord</param>
+        /// <returns>List OF Faq Ordered By Faq Sort</returns>
+        /// <example>
+        ///   // GET: Faq/List
+        /// </example>
         public ActionResult List(string Search = null)
         {
             //Objective : communicate without our faq data api to retrive a list of faqs
@@ -85,10 +94,7 @@ namespace MHC_Hospital_Redesign.Controllers
               
                 
                 return View(ViewModel); ;
-               // search == null ? SelectedFaq.OrderBy(x => x.FaqSort).ToList() :
-              //  SelectedFaq.Where(x => x.FaqQuestions.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0).ToList());
-                // return View(SelectedFaq.OrderBy(x => x.FaqSort).ToList()
-                // return View(SelectedFaq.OrderBy(x => x.FaqSort).ToList());
+            
             }
 
             else
@@ -96,9 +102,44 @@ namespace MHC_Hospital_Redesign.Controllers
                 return RedirectToAction("Error");
             }
         }
+        /// <summary>
+        /// Update the Faq once they have been sorted .This fucntion is still in progress as its not working.
+        /// Further investigation and refinement is required
+        /// </summary>
+        /// <param name="itemIds"></param>
+        /// <returns>Uodated Faq Sort </returns>
+        public ActionResult UpdateFaqPosition(string itemIds)
+        {
+            int count = 1;
+            List<int> itemIdList = new List<int>();
+            itemIdList = itemIds.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+            foreach (var itemId in itemIdList)
+            {
+                try
+                {
+                    Faq item = db.Faqs.Where(x => x.FaqID == itemId).FirstOrDefault();
+                    item.FaqSort = count;
+                    db.Faqs.AddOrUpdate(item);
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+                count++;
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
 
+        /// <summary>
+        /// Displays Detailed Faq using the Id from the List Faq.
+        /// </summary>
+        /// <param name="id">Faq Id as an Id</param>
+        /// <returns>Detailed View of a Particular Faq</returns>
+        /// <example>
+        /// // GET: Faq/Details/5
+        /// </example>
 
-        // GET: Faq/Details/5
         public ActionResult Details(int id)
         {
             DetailsFaq ViewModel = new DetailsFaq();
@@ -137,7 +178,17 @@ namespace MHC_Hospital_Redesign.Controllers
             return View(ViewModel);
         }
 
+
+        /// <summary>
+        /// Associalte an Faq with a Category in a Many to Many Relationship.
+        /// </summary>
+        /// <param name="id">Faq Id as an Id</param>
+        /// <param name="FaqCategoryID">category Id as the key</param>
+        /// <returns>Assoicated a Faq Category with an Faq</returns>
+        /// <example>
         //POST: Faq/Associate/{faqid}
+        /// </example>
+       
         [HttpPost]
        [Authorize(Roles ="Admin")]
         public ActionResult Associate(int id, int FaqCategoryID)
@@ -153,8 +204,16 @@ namespace MHC_Hospital_Redesign.Controllers
 
             return RedirectToAction("Details/" + id);
         }
-
+       
+        /// <summary>
+        /// UnAssociates an Faq with a Category in a Many to Many Relationship.
+        /// </summary>
+        /// <param name="id">Faq Id as an Id</param>
+        /// <param name="FaqCategoryID">category Id as the key</param>
+        /// <returns>UnAssoicated a Faq Category with an Faq</returns>
+        /// <example>
         //POST: Faq/UnAssociate/{id}?FaqCategoryID={FaqCategoryID}
+        /// </example>
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult UnAssociate(int id, int FaqCategoryID)
@@ -185,7 +244,14 @@ namespace MHC_Hospital_Redesign.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// Adds a New Faq To the List
+        /// </summary>
+        /// <returns>Creates a New Faq</returns>
+        /// <example>
         // POST: Faq/Create
+        /// </example>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult Create(Faq faq)
@@ -216,7 +282,14 @@ namespace MHC_Hospital_Redesign.Controllers
 
         }
 
+        /// <summary>
+        ///Finds the information for a particular Faq to be updated using Id
+        /// </summary>
+        ///  /// <param name="id">Faq Id a a key</param>
+        /// <returns>Information about a particular Faq</returns>
+        /// <example>
         // GET: Faq/Edit/5
+        /// </example>
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
@@ -227,7 +300,15 @@ namespace MHC_Hospital_Redesign.Controllers
             return View(selectedFaq);
         }
 
-        // POST: Faq/Update/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="faq"></param>
+        /// <returns></returns>
+        /// <example>
+        /// // POST: Faq/Update/5
+        /// </example>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Faq faq)
@@ -253,7 +334,15 @@ namespace MHC_Hospital_Redesign.Controllers
             }
         }
 
-        // GET: Faq/Delete/5
+        /// <summary>
+        /// Gnenerates a Confirmation Prompt grabbing the information of a particular Faq by its Id
+        /// </summary>
+        /// <param name="id">Faq Id as the id</param>
+        /// <returns>
+        /// information about a particulater Faq</returns>
+        /// <example>
+        ///  // GET: Faq/DeleteConfirm/5
+        /// </example>
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
@@ -263,7 +352,16 @@ namespace MHC_Hospital_Redesign.Controllers
             return View(selectedfaq);
         }
 
-        // POST: Aircraft/Delete/5
+        /// <summary>
+        /// Deletes a  Particular Faq
+        /// </summary>
+        /// <param name="id">Faq id as the id</param>
+        /// <returns>
+        /// Deletes ana faq from the list , no returns
+        /// </returns>
+        /// <example>
+        /// // POST: Faq/Delete/5
+        /// </example>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)

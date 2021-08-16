@@ -54,7 +54,16 @@ namespace MHC_Hospital_Redesign.Controllers
             return;
         }
 
-        // GET: FaqCategory/List
+        /// <summary>
+        /// Lists all the Faq Categories
+        /// </summary>
+        /// <param name="Search">Search Bar to search a Category using Keywords</param>
+        /// <returns>
+        /// List of Faq Categories
+        /// </returns>
+        /// <example>
+        /// // GET: FaqCategory/List
+        /// </example>
         [HttpGet]
         public ActionResult List(string Search = null)
         {
@@ -98,8 +107,16 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
 
-
-        // GET: FaqCategories/Details/5
+        /// <summary>
+        /// Gets the information Details of a Particular Faq Category Using Its Id
+        /// </summary>
+        /// <param name="id">Faq Category Id as th Id</param>
+        /// <returns>
+        /// Details information based on a Particular Id
+        /// </returns>
+        /// <example>
+        ///  // GET: FaqCategories/Details/5
+        /// </example>
         [HttpGet]
         public ActionResult Details(int id)
         {
@@ -137,8 +154,15 @@ namespace MHC_Hospital_Redesign.Controllers
             return View();
         }
 
-
-        // GET: FaqCAtegory/New
+        /// <summary>
+        /// Returns a a New Add View to the Faq to Add a New Faq
+        /// </summary>
+        /// <returns>
+        /// Add vIEW to the vIEW
+        /// </returns>
+        /// <example>
+        ///  // GET: FaqCAtegory/New
+        /// </example>
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult New()
@@ -146,7 +170,17 @@ namespace MHC_Hospital_Redesign.Controllers
             return View();
         }
 
-        // POST: FaqCategory/Create
+
+        /// <summary>
+        /// Creates New Faq category
+        /// </summary>
+        /// <param name="faqCategory"></param>
+        /// <returns>
+        /// Returns to the lis page once a new addition is made
+        /// </returns>
+        /// <example>
+        /// // POST: FaqCategory/Create
+        /// </example>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult Create(FaqCategory faqCategory)
@@ -177,7 +211,16 @@ namespace MHC_Hospital_Redesign.Controllers
             }
         }
 
-        // GET: FaqCategory/Edit/5
+        /// <summary>
+        /// Gerts infomration ofa particular Faq CAtegory based on its ID
+        /// </summary>
+        /// <param name="id">fAQ category as the Id</param>
+        /// <returns>
+        /// infomration based view on particular category
+        /// </returns>
+        /// <example>
+        /// // GET: FaqCategory/Edit/5
+        /// </example>
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
@@ -212,8 +255,16 @@ namespace MHC_Hospital_Redesign.Controllers
                 return RedirectToAction("Error");
             }
         }
-
+       
+        /// <summary>
+        /// Gnenerates a Confirmation Prompt grabbing the information of a particular Faq Category by its Id
+        /// </summary>
+        /// <param name="id">FaqCategory Id as the id</param>
+        /// <returns>
+        /// information about a particulater FaqCategory</returns>
+        /// <example>
         // GET: FaqCategory/DeleteConfirm/5
+        /// </example>
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
@@ -223,7 +274,16 @@ namespace MHC_Hospital_Redesign.Controllers
             return View(selectedFaqCategory);
         }
 
+        /// <summary>
+        /// Deletes a  Particular Faq Category
+        /// </summary>
+        /// <param name="id">FaqCategory id as the id</param>
+        /// <returns>
+        /// Deletes an faqCAtegory from the list , no returns
+        /// </returns>
+        /// <example>
         // POST: FaqCategory/Delete/5
+        /// </example>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)

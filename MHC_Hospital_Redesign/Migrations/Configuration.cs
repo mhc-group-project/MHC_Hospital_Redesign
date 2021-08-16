@@ -9,7 +9,7 @@ namespace MHC_Hospital_Redesign.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(MHC_Hospital_Redesign.Models.ApplicationDbContext context)

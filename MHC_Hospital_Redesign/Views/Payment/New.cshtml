@@ -3,5 +3,37 @@
     ViewBag.Title = "New";
 }
 
-<h2>New</h2>
+<nav>
+    <a href="/Payment/List">Cancel</a>
+</nav>
+
+<h2>New Payment</h2>
+
+<form action="/Payment/Create" method="POST">
+    <div>
+        <label for="Amount">Amount</label>
+        <input id="Amount" type="number" name="Amount" />
+    </div>
+    <div>
+        <label for="Address">Address</label>
+        <input id="Address" type="text" name="Address" />
+    </div>
+    <div>
+        <label for="City">City</label>
+        <input id="City" type="text" name="City" />
+    </div>
+    <div>
+        <label for="PostalCode">PostalCode</label>
+        <input id="PostalCode" type="text" name="PostalCode" />
+    </div>
+    <div>
+        <label for="Province">Province</label>
+        <input id="Province" type="text" name="Province" />
+    </div>
+    <div>
+        <label for="Country">Country</label>
+        <input id="Country" type="text" name="Country" />
+    </div>
+    <button class="btn formBtn" type="submit">Pay</button>
+</form>
 

@@ -1,8 +1,9 @@
-﻿@model MHC_Hospital_Redesign.Models.ViewModels.UpdateFeedback
+@model MHC_Hospital_Redesign.Models.ViewModels.UpdateFeedback
 
 @{
     ViewBag.Title = "Edit";
-   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <h2>Update Feedback</h2>
@@ -17,7 +18,7 @@
     </div>
     <div class="form-group">
         <label for="FeedbackContent">Feedback Content:</label>
-        <input type="text" class="form-control" name="FeedbackContent" id="feedbackContent" value="@Model.SelectedFeedback.FeedbackContent" />
+        <textarea type="text" name="FeedbackContent">@Model.SelectedFeedback.FeedbackContent</textarea> 
     </div>
 
     <div>

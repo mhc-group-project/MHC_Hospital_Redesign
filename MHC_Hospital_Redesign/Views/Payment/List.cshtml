@@ -1,7 +1,18 @@
-﻿
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.PaymentDto>
 @{
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
+<h2>Payments</h2>
+
+<nav>
+    <a href="/Payment/New">Add Payment</a>
+</nav>
+
+<div>
+    @foreach (var payment in Model)
+    {
+        <h3><a href="/Payment/Details/@payment.PaymentID">Payment Connected to @payment.InvoiceNumber</a></h3>
+    }
+</div>
 

@@ -7,58 +7,59 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&family=Open+Sans&display=swap" rel="stylesheet">
     <script src="https://cdn.tiny.cloud/1/1fz23mcco9nh72hzgxskxdamg8l15ssk9sm4ll0ebt4zujrl/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
-
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("MHC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Faq", "List", "FaqCategory")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Appointment", "Create", "Appointment")</li>
-                    <li>@Html.ActionLink("Department", "List", "Department")</li>
-                    <li>@Html.ActionLink("Feedback", "List", "Feedback")</li>
-                    <li>@Html.ActionLink("Ecard", "New", "Ecard")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("MHC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Faq", "List", "FaqCategory")</li>
+                        <li>@Html.ActionLink("Appointment", "Create", "Appointment")</li>
+                        <li>@Html.ActionLink("Department", "List", "Department")</li>
+                        <li>@Html.ActionLink("Pay an Invoice", "New", "Invoice")</li>
+                        <li>@Html.ActionLink("Feedback", "List", "Feedback")</li>
+                        <li>@Html.ActionLink("Ecard", "New", "Ecard")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <div class="navbar navbar-inverse  navbar-fixed-bottom modal-footer">
-                <p>&copy; @DateTime.Now.Year - MHC Hospital Re-design Project Part of HTTP5204 Mobile Development</p>
-            </div>
-           
-        </footer>
-    </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <div class="navbar navbar-inverse  navbar-fixed-bottom modal-footer">
+                    <p>&copy; @DateTime.Now.Year - MHC Hospital Re-design Project Part of HTTP5204 Mobile Development</p>
+                </div>
+
+            </footer>
+        </div>
 
 
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 
-    <script>
-        tinymce.init({
-            selector: 'textarea'
-        });
-    </script>
-</body>
+        <script>
+            tinymce.init({
+                selector: 'textarea'
+            });
+        </script>
+    </body>
 </html>

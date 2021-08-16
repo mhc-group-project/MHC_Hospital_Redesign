@@ -1,4 +1,4 @@
-﻿@model MHC_Hospital_Redesign.Models.ViewModels.DetailsFeedback
+@model MHC_Hospital_Redesign.Models.ViewModels.DetailsFeedback
 @{
     ViewBag.Title = "View";
 }
@@ -23,7 +23,7 @@
 <div>Feedback Category: @Model.SelectedFeedback.FeedbackCategoryName</div>
 
 <div class="container">
-    <div>Feedback Content: @Model.SelectedFeedback.FeedbackContent</div>
+    <div>Feedback Content: @Html.Raw(Model.SelectedFeedback.FeedbackContent)</div>
 </div>
 
 

@@ -4,6 +4,36 @@
     ViewBag.Title = "List";
 }
 
+<!--aDDING A jQUERY uI SCRIPT TAG-->
+
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<!--NON FUNCTION SCRIPT CONSISTING OF A DRAG AND DROP AS FUNCITION AS WELL AS UPDATING THE POSITION IN THE DATABASE.
+    FURTHER INVESTIGATION REQUIRED IN ORDER TO FIX THE ISSUE AND REFINE THE CODE-->
+<script>
+    $(document.ready(function () {
+        $("#sortable").sortable({
+            update: function (event, ui) {
+                var itemIds = "";
+                $("#sortable").find(".questionSingleInline").each(function () {
+                    var itemId = $(this).attr("data-taskid");
+                    itemIds = itemIds + itemId + ",";
+                });
+                $ajax({
+                    url: '@Url.Action("UpdateFaqPostion","Faq")',
+                    data: { itemIds: itemIds },
+                    type: 'POST',
+                    succes: function(data){
+
+                },
+                    error: function (xhr, status, error) {
+
+                    }
+                });
+    }
+        });
+    }));
+</script>
+
 <div class="faq-list-heading">
     <h2>All Faqs</h2>
 
@@ -25,15 +55,18 @@
     </form>
 </div>
 
-<div class="list-flex-container">
+<div class="list-flex-container" id="sortable" style="cursor:pointer;">
     @foreach (var faq in Model.Faqs)
     {
 
 
+
+
         <div class="faq-list-div faq-category-relation-list-questions">
-            <h2 style="font-size:1.5em; font-weight:bold;"><a href="/Faq/Details/@faq.FaqID">@faq.FaqQuestions</a></h2>
+            <h2 class="questionSingleInline" id="task@(faq.FaqID)" data-taskid="@(faq.FaqID)" style="font-size:1.5em; font-weight:bold;"><a href="/Faq/Details/@faq.FaqID">@faq.FaqQuestions</a></h2>
         </div>
 
-
     }
+
 </div>
+<a class="btn btn-primary" href="@Url.Action("List", "Faq")">Update Position</a>

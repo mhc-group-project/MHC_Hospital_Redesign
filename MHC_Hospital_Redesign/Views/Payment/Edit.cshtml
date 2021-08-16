@@ -1,7 +1,34 @@
-﻿
+﻿@model MHC_Hospital_Redesign.Models.PaymentDto
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<nav>
+    <a href="/Payment/List">Back to List</a>
+</nav>
 
+<h2>New Payment</h2>
+
+<form action="/Payment/Update/@Model.PaymentID" method="POST">
+    <div>
+        <label for="Address">Address</label>
+        <input id="Address" type="text" name="Address" value="@Model.Address" />
+    </div>
+    <div>
+        <label for="City">City</label>
+        <input id="City" type="text" name="City" value="@Model.City" />
+    </div>
+    <div>
+        <label for="PostalCode">PostalCode</label>
+        <input id="PostalCode" type="text" name="PostalCode" value="@Model.PostalCode" />
+    </div>
+    <div>
+        <label for="Province">Province</label>
+        <input id="Province" type="text" name="Province" value="@Model.Province" />
+    </div>
+    <div>
+        <label for="Country">Country</label>
+        <input id="Country" type="text" name="Country" value="@Model.Country" />
+    </div>
+    <button class="btn formBtn" type="submit">Pay</button>
+</form>

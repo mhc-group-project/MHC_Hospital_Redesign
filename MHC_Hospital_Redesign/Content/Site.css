@@ -97,6 +97,9 @@ textarea {
     padding:1em;
 }
 
+.faq-category-relation-list-questions:hover {
+    background: #2277a5;
+}
 .faq-category-relation-list-questions a {
     text-decoration: none;
     font-size: 1.5em;
