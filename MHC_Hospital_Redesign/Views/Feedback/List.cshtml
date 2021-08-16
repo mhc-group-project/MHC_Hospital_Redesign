@@ -23,7 +23,7 @@
     {
 
         <div style="border-top:solid black 1px;" class="col-lg-4 col-md-6 col-sm-12">
-            <h2><a href="/Feedback/Details/@feedback.FeedbackId">@feedback.FeedbackContent</a></h2>
+            <h2><a href="/Feedback/Details/@feedback.FeedbackId">@Html.Raw(feedback.FeedbackContent)</a></h2>
             
             <div>ID: @feedback.FeedbackId</div>
             <div>Feedback Created on: @feedback.TimeStamp</div>
