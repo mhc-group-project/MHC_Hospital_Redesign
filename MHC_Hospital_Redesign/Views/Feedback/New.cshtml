@@ -8,7 +8,11 @@
 
 <form action="/Feedback/Create" method="POST">
     <div>
-        <label>User Name:</label> <input type="text" name="UserName" />
+        <label>User Name:</label> <input type="text" name="UserName" 
+        data-val="true" data-val-required="Please enter User Name."/>
+
+        <span class="field-validation-valid text-danger" data-valmsg-for="UserName" 
+         data-valmsg-replace="true"></span>
     </div>
     <div>
         <label>Feedback Content:</label> <textarea type="text" name="FeedbackContent"></textarea>
@@ -23,6 +27,7 @@
 
             }
         </select>
+        
     </div>
     <div>
         <input type="submit" value="Add Feedback" />
@@ -31,4 +36,3 @@
 
 
 </form>
-
