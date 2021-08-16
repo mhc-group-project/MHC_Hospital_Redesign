@@ -18,13 +18,13 @@ namespace MHC_Hospital_Redesign.Models
         public string UserName { get; set; }
         
         [AllowHtml]
-        [Required]
+        
         public string FeedbackContent { get; set; }
         public DateTime TimeStamp { get; set; }
 
         [ForeignKey("FeedbackCategory")]
         public int FeedbackCategoryID { get; set; }
-        [Required]
+        
         public virtual FeedbackCategory FeedbackCategory { get; set; }
     }
     public class FeedbackDto
