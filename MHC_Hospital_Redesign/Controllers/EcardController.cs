@@ -51,6 +51,7 @@ namespace MHC_Hospital_Redesign.Controllers
         // GET: Ecard/List
         public ActionResult List()
         {
+            GetApplicationCookie();
             //goal: to communicate with template data api to retrieve a list of ecards
             //curl https://localhost:44338/api/templatedata/listecards
 

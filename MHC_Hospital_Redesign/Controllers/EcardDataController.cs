@@ -116,7 +116,6 @@ namespace MHC_Hospital_Redesign.Controllers
        
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateEcard(int id, Ecard ecard)
         {
             Debug.WriteLine("I have reached the update ecard method!");
