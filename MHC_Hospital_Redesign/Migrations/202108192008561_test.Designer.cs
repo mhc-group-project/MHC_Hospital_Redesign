@@ -7,13 +7,13 @@ namespace MHC_Hospital_Redesign.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ecardpatient : IMigrationMetadata
+    public sealed partial class test : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ecardpatient));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(test));
         
         string IMigrationMetadata.Id
         {
-            get { return "202107302228510_ecard-patient"; }
+            get { return "202108192008561_test"; }
         }
         
         string IMigrationMetadata.Source

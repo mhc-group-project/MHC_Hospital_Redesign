@@ -3,7 +3,7 @@ namespace MHC_Hospital_Redesign.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class updated : DbMigration
+    public partial class test : DbMigration
     {
         public override void Up()
         {
@@ -12,10 +12,10 @@ namespace MHC_Hospital_Redesign.Migrations
                 c => new
                     {
                         AId = c.Int(nullable: false, identity: true),
-                        Subject = c.String(),
-                        Message = c.String(),
-                        DateTime = c.String(),
-                        Status = c.String(),
+                        Subject = c.String(nullable: false),
+                        Message = c.String(nullable: false),
+                        DateTime = c.String(nullable: false),
+                        Status = c.Int(nullable: false),
                         PatientId = c.String(maxLength: 128),
                         DoctorId = c.String(maxLength: 128),
                     })
@@ -30,6 +30,8 @@ namespace MHC_Hospital_Redesign.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(),
+                        LastName = c.String(),
                         ContactMethod = c.String(),
                         Address = c.String(),
                         Email = c.String(maxLength: 256),
@@ -61,6 +63,19 @@ namespace MHC_Hospital_Redesign.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.Departments",
+                c => new
+                    {
+                        DId = c.Int(nullable: false, identity: true),
+                        DepartmentName = c.String(nullable: false),
+                        PhoneNumber = c.String(nullable: false),
+                        UserId = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.DId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.UserId);
+            
+            CreateTable(
                 "dbo.Listings",
                 c => new
                     {
@@ -72,7 +87,9 @@ namespace MHC_Hospital_Redesign.Migrations
                         ListLocation = c.String(),
                         DepartmentID = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ListID);
+                .PrimaryKey(t => t.ListID)
+                .ForeignKey("dbo.Departments", t => t.DepartmentID, cascadeDelete: true)
+                .Index(t => t.DepartmentID);
             
             CreateTable(
                 "dbo.AspNetUserLogins",
@@ -100,23 +117,13 @@ namespace MHC_Hospital_Redesign.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
-                "dbo.Departments",
-                c => new
-                    {
-                        DId = c.Int(nullable: false, identity: true),
-                        DepartmentName = c.String(),
-                        PhoneNumber = c.String(),
-                    })
-                .PrimaryKey(t => t.DId);
-            
-            CreateTable(
                 "dbo.Ecards",
                 c => new
                     {
                         EcardId = c.Int(nullable: false, identity: true),
-                        SenderName = c.String(),
-                        PatientName = c.String(),
-                        Message = c.String(),
+                        SenderName = c.String(nullable: false),
+                        PatientName = c.String(nullable: false),
+                        Message = c.String(nullable: false),
                         TemplateId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.EcardId)
@@ -132,6 +139,8 @@ namespace MHC_Hospital_Redesign.Migrations
                         TemplateHasPic = c.Boolean(nullable: false),
                         TemplatePicExtension = c.String(),
                         TemplateStyle = c.String(),
+                        TemplateHasStyle = c.Boolean(nullable: false),
+                        TemplateStyleExtension = c.String(),
                     })
                 .PrimaryKey(t => t.TemplateId);
             
@@ -141,9 +150,9 @@ namespace MHC_Hospital_Redesign.Migrations
                     {
                         FaqCategoryID = c.Int(nullable: false, identity: true),
                         CategoryDateAdded = c.DateTime(nullable: false),
-                        CategoryName = c.String(),
-                        CategoryDescription = c.String(),
-                        CategoryColor = c.String(),
+                        CategoryName = c.String(nullable: false),
+                        CategoryDescription = c.String(nullable: false),
+                        CategoryColor = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.FaqCategoryID);
             
@@ -153,11 +162,35 @@ namespace MHC_Hospital_Redesign.Migrations
                     {
                         FaqID = c.Int(nullable: false, identity: true),
                         DateAdded = c.DateTime(nullable: false),
-                        FaqQuestions = c.String(),
-                        FaqAnswers = c.String(),
+                        FaqQuestions = c.String(nullable: false),
+                        FaqAnswers = c.String(nullable: false),
                         FaqSort = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.FaqID);
+            
+            CreateTable(
+                "dbo.FeedbackCategories",
+                c => new
+                    {
+                        FeedbackCategoryID = c.Int(nullable: false, identity: true),
+                        FeedbackCategoryName = c.String(),
+                        FeedbackCategoryColor = c.String(),
+                    })
+                .PrimaryKey(t => t.FeedbackCategoryID);
+            
+            CreateTable(
+                "dbo.Feedbacks",
+                c => new
+                    {
+                        FeedbackId = c.Int(nullable: false, identity: true),
+                        UserName = c.String(nullable: false),
+                        FeedbackContent = c.String(),
+                        TimeStamp = c.DateTime(nullable: false),
+                        FeedbackCategoryID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.FeedbackId)
+                .ForeignKey("dbo.FeedbackCategories", t => t.FeedbackCategoryID, cascadeDelete: true)
+                .Index(t => t.FeedbackCategoryID);
             
             CreateTable(
                 "dbo.Invoices",
@@ -177,7 +210,6 @@ namespace MHC_Hospital_Redesign.Migrations
                     {
                         PaymentID = c.Int(nullable: false, identity: true),
                         NameOnCard = c.String(),
-                        CardHash = c.String(),
                         Address = c.String(),
                         City = c.String(),
                         PostalCode = c.String(),
@@ -231,6 +263,7 @@ namespace MHC_Hospital_Redesign.Migrations
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Payments", "InvoiceID", "dbo.Invoices");
+            DropForeignKey("dbo.Feedbacks", "FeedbackCategoryID", "dbo.FeedbackCategories");
             DropForeignKey("dbo.FaqFaqCategories", "FaqCategory_FaqCategoryID", "dbo.FaqCategories");
             DropForeignKey("dbo.FaqFaqCategories", "Faq_FaqID", "dbo.Faqs");
             DropForeignKey("dbo.Ecards", "TemplateId", "dbo.Templates");
@@ -238,6 +271,8 @@ namespace MHC_Hospital_Redesign.Migrations
             DropForeignKey("dbo.Appointments", "DoctorId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Departments", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Listings", "DepartmentID", "dbo.Departments");
             DropForeignKey("dbo.ListingApplicationUsers", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.ListingApplicationUsers", "Listing_ListID", "dbo.Listings");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
@@ -247,10 +282,13 @@ namespace MHC_Hospital_Redesign.Migrations
             DropIndex("dbo.ListingApplicationUsers", new[] { "Listing_ListID" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Payments", new[] { "InvoiceID" });
+            DropIndex("dbo.Feedbacks", new[] { "FeedbackCategoryID" });
             DropIndex("dbo.Ecards", new[] { "TemplateId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+            DropIndex("dbo.Listings", new[] { "DepartmentID" });
+            DropIndex("dbo.Departments", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Appointments", new[] { "DoctorId" });
@@ -260,14 +298,16 @@ namespace MHC_Hospital_Redesign.Migrations
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Payments");
             DropTable("dbo.Invoices");
+            DropTable("dbo.Feedbacks");
+            DropTable("dbo.FeedbackCategories");
             DropTable("dbo.Faqs");
             DropTable("dbo.FaqCategories");
             DropTable("dbo.Templates");
             DropTable("dbo.Ecards");
-            DropTable("dbo.Departments");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.Listings");
+            DropTable("dbo.Departments");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Appointments");

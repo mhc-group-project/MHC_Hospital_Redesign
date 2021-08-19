@@ -209,59 +209,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107300150413_updated.cs" />
-    <Compile Include="Migrations\202107300150413_updated.Designer.cs">
-      <DependentUpon>202107300150413_updated.cs</DependentUpon>
+    <Compile Include="Migrations\202108192008561_test.cs" />
+    <Compile Include="Migrations\202108192008561_test.Designer.cs">
+      <DependentUpon>202108192008561_test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107301430115_update.cs" />
-    <Compile Include="Migrations\202107301430115_update.Designer.cs">
-      <DependentUpon>202107301430115_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107301432591_listingforeignkey.cs" />
-    <Compile Include="Migrations\202107301432591_listingforeignkey.Designer.cs">
-      <DependentUpon>202107301432591_listingforeignkey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107301436495_usercolumns.cs" />
-    <Compile Include="Migrations\202107301436495_usercolumns.Designer.cs">
-      <DependentUpon>202107301436495_usercolumns.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107301607558_userdto.cs" />
-    <Compile Include="Migrations\202107301607558_userdto.Designer.cs">
-      <DependentUpon>202107301607558_userdto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108010607108_Updated appointments and deparments.cs" />
-    <Compile Include="Migrations\202108010607108_Updated appointments and deparments.Designer.cs">
-      <DependentUpon>202108010607108_Updated appointments and deparments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108052106260_invoice1.cs" />
-    <Compile Include="Migrations\202108052106260_invoice1.Designer.cs">
-      <DependentUpon>202108052106260_invoice1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108052358263_AddedValidation-Faq.cs" />
-    <Compile Include="Migrations\202108052358263_AddedValidation-Faq.Designer.cs">
-      <DependentUpon>202108052358263_AddedValidation-Faq.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108121906593_new-migration.cs" />
-    <Compile Include="Migrations\202108121906593_new-migration.Designer.cs">
-      <DependentUpon>202108121906593_new-migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108122012161_template2.cs" />
-    <Compile Include="Migrations\202108122012161_template2.Designer.cs">
-      <DependentUpon>202108122012161_template2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108130240489_Updated data.cs" />
-    <Compile Include="Migrations\202108130240489_Updated data.Designer.cs">
-      <DependentUpon>202108130240489_Updated data.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108141931293_update-ecard.cs" />
-    <Compile Include="Migrations\202108141931293_update-ecard.Designer.cs">
-      <DependentUpon>202108141931293_update-ecard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108191542221_test.cs" />
-    <Compile Include="Migrations\202108191542221_test.Designer.cs">
-      <DependentUpon>202108191542221_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Department.cs" />
@@ -484,44 +435,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107300150413_updated.resx">
-      <DependentUpon>202107300150413_updated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107301430115_update.resx">
-      <DependentUpon>202107301430115_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107301432591_listingforeignkey.resx">
-      <DependentUpon>202107301432591_listingforeignkey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107301436495_usercolumns.resx">
-      <DependentUpon>202107301436495_usercolumns.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107301607558_userdto.resx">
-      <DependentUpon>202107301607558_userdto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108010607108_Updated appointments and deparments.resx">
-      <DependentUpon>202108010607108_Updated appointments and deparments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108052106260_invoice1.resx">
-      <DependentUpon>202108052106260_invoice1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108052358263_AddedValidation-Faq.resx">
-      <DependentUpon>202108052358263_AddedValidation-Faq.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108121906593_new-migration.resx">
-      <DependentUpon>202108121906593_new-migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108122012161_template2.resx">
-      <DependentUpon>202108122012161_template2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108130240489_Updated data.resx">
-      <DependentUpon>202108130240489_Updated data.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108141931293_update-ecard.resx">
-      <DependentUpon>202108141931293_update-ecard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108191542221_test.resx">
-      <DependentUpon>202108191542221_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202108192008561_test.resx">
+      <DependentUpon>202108192008561_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
