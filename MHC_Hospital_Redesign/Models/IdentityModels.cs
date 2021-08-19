@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace MHC_Hospital_Redesign.Models
 {
@@ -37,10 +39,19 @@ namespace MHC_Hospital_Redesign.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+       /* public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+       *?
+
+        /* AWS Connection*/
+        public ApplicationDbContext()
+           : base(AWSConnector.GetRDSConnectionString())
+        {
+
+        }
+
         public DbSet<Ecard> Ecards { get; set; }
         public DbSet<Template> Templates { get; set; }
 
