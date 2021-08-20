@@ -33,10 +33,11 @@ Patients and Doctors can see list of departments as well available jobs with tha
 
 
 ### Ruth's Feature Summary
-The Volunter Listings feature displays all available volunteer listings in the hospital and allows users to perform full CRUD operations. In the future, authentication will be implemented and only admin will be able to perform full CRUD operations. For users, the listings will be read-only.
+The Volunter Listings feature displays all available volunteer listings in the hospital and allows admin users to perform full CRUD operations. Authentication is implemented and only admin users can perform full CRUD operations. For users, the listings are read-only. In the future, conditional rendering will be implemented and Application Users more robust.
 - Listing entity has a M-M relationship with Application Users (Entity Framework)
+- Listing entity has a 1-M relationship with Department
 - Listings table is utilizing a foreign key from Departments table
-- Listing: users can list, create, update and delete Volunteer Listings
+- Listing: admin users can list, create, update and delete Volunteer Listings
 - Users: information about the users are displayed in associated listings and can be unassociated with a particular listing
 
 ### Justin's Feature Summary
