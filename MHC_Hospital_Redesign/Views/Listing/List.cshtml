@@ -3,18 +3,24 @@
     ViewBag.Title = "List";
 }
 
-<div>
-    <a href="/Listing/New">New</a>
-</div>
-
 <h2>Volunteer Listings</h2>
 
+<div>
+    <form action="/Listing/List" method="GET">
+        <input type="text" name="SearchKey" />
+        <input type="submit" value="Search"/>
+    </form>
+</div>
+
+<div class="list-nav">
+    <a href="/Listing/New" class="btn btn-primary">Add New Listing</a>
+</div>
 @foreach (var listing in Model)
 { 
     <div>
-        <h3><a href="/Listing/Details/@listing.ListID">@listing.ListTitle</a></h3>
-        <p>@listing.ListDate</p>
-        <p>@listing.ListDescription</p>
+        <h3><a href="/Listing/Details/@listing.ListID">@Html.Raw(@listing.ListTitle)</a></h3>
+        <p>@Html.Raw(@listing.ListDate)</p>
+        <p>@Html.Raw(@listing.ListDescription)</p>
         <p>Location: @listing.ListLocation</p>
     </div>
 }

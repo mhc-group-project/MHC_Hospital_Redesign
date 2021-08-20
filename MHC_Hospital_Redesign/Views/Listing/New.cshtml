@@ -1,34 +1,49 @@
-﻿
+﻿@model MHC_Hospital_Redesign.Models.ViewModels.UpdateListing
 @{
     ViewBag.Title = "New";
 }
 
-<a href="/Listing/List">List</a>
+<div class="list-nav">
+    <a href="/Listing/List" class="btn btn-primary">Back to List</a>
+</div>
 
-<h2>Create Listing</h2>
+<h2>Create New Volunteer Listing</h2>
 
 <form action="/Listing/Create" method="POST">
     <div>
         <label for="ListTitle">Title:</label>
-        <input type="text" name="ListTitle" />
+        <input type="text" name="ListTitle" data-val="true" data-val-required="Please enter a listing title." />
+        @Html.ValidationMessageFor(model => model.SelectedListing.ListTitle, "", new { @class = "text-danger", data_valmsg_for = "ListTitle" })
     </div>
     <div>
         <label for="ListDate">Date:</label>
-        <input type="text" name="ListDate" />
+        <input type="date" name="ListDate" value="@System.DateTime.Now" data-val="true" data-val-required="Please enter a date." />
+
+        @Html.ValidationMessageFor(model => model.SelectedListing.ListDate, "", new { @class = "text-danger", data_valmsg_for = "ListDate" })
     </div>
     <div>
         <label for="ListLocation">Location:</label>
         <input type="text" name="ListLocation" />
     </div>
     <div>
+        <label>Department:</label>
+        <select name="DepartmentID">
+            @foreach (var dept in Model.DeptOptions)
+            {
+                <option value="@dept.DId">@dept.DepartmentName</option>
+            }
+        </select>
+    </div>
+    <div>
         <label for="ListDescription">Description:</label>
-        <textarea name="ListDescription"></textarea>
+        <textarea name="ListDescription" value="@System.DateTime.Now" data-val="true" data-val-required="Please enter a date." ></textarea>
+        @Html.ValidationMessageFor(model => model.SelectedListing.ListDescription, "", new { @class = "text-danger", data_valmsg_for = "ListDescription" })
     </div>
     <div>
         <label for="ListRequirements">Requirements:</label>
         <textarea name="ListRequirements"></textarea>
     </div>
-    <div>
-        <input type="submit" value="Add Listing" />
+    <div class="list-nav">
+        <input type="submit" value="Add Listing" class="btn btn-success" />
     </div>
 </form>

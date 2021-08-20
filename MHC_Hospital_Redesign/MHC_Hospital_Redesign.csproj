@@ -213,6 +213,22 @@
     <Compile Include="Migrations\202108192008561_test.Designer.cs">
       <DependentUpon>202108192008561_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108200053527_updated-listing.cs" />
+    <Compile Include="Migrations\202108200053527_updated-listing.Designer.cs">
+      <DependentUpon>202108200053527_updated-listing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108200135242_upd-listingmodel.cs" />
+    <Compile Include="Migrations\202108200135242_upd-listingmodel.Designer.cs">
+      <DependentUpon>202108200135242_upd-listingmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108200155093_updated-listing2.cs" />
+    <Compile Include="Migrations\202108200155093_updated-listing2.Designer.cs">
+      <DependentUpon>202108200155093_updated-listing2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108200341415_upd-listing.cs" />
+    <Compile Include="Migrations\202108200341415_upd-listing.Designer.cs">
+      <DependentUpon>202108200341415_upd-listing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Department.cs" />
@@ -240,9 +256,11 @@
     <Compile Include="Models\ViewModels\DetailsListing.cs" />
     <Compile Include="Models\ViewModels\DetailsTemplate.cs" />
     <Compile Include="Models\ViewModels\ListFaqCategory.cs" />
+    <Compile Include="Models\ViewModels\ListListing.cs" />
     <Compile Include="Models\ViewModels\UpdateEcard.cs" />
     <Compile Include="Models\ViewModels\UpdateFaq.cs" />
     <Compile Include="Models\ViewModels\UpdateFeedback.cs" />
+    <Compile Include="Models\ViewModels\UpdateListing.cs" />
     <Compile Include="Models\ViewModels\UpdateTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -437,6 +455,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202108192008561_test.resx">
       <DependentUpon>202108192008561_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108200053527_updated-listing.resx">
+      <DependentUpon>202108200053527_updated-listing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108200135242_upd-listingmodel.resx">
+      <DependentUpon>202108200135242_upd-listingmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108200155093_updated-listing2.resx">
+      <DependentUpon>202108200155093_updated-listing2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108200341415_upd-listing.resx">
+      <DependentUpon>202108200341415_upd-listing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

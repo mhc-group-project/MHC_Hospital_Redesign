@@ -30,10 +30,16 @@ namespace MHC_Hospital_Redesign.Controllers
         /// GET: api/ListingData/ListListings
         /// </example>
         [HttpGet]
-        public IEnumerable<ListingDto> ListListings()
+        public IEnumerable<ListingDto> ListListings(string SearchKey = null)
         {
             List<Listing> Listings = db.Listings.ToList();
             List<ListingDto> ListingDtos = new List<ListingDto>();
+
+            // searching the database with the searchkey
+            if(SearchKey != null )
+            {
+                Listings = db.Listings.Where(a => a.ListTitle.Contains(SearchKey)).ToList();
+            }
 
             Listings.ForEach(a => ListingDtos.Add(new ListingDto()
             {
@@ -43,12 +49,14 @@ namespace MHC_Hospital_Redesign.Controllers
                 ListDescription = a.ListDescription,
                 ListRequirements = a.ListRequirements,
                 ListLocation = a.ListLocation,
-                DepartmentID = a.DepartmentID
+                DepartmentID = a.Department.DId,
+                DepartmentName = a.Department.DepartmentName
 
             }));
 
             return ListingDtos;
         }
+
         /// <summary>
         /// Associates a particular user with a particular recipe
         /// </summary>
@@ -64,6 +72,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// </example>
         [HttpPost]
         [Route("api/listingdata/AssociateListingWithUser/{listid}/{userid}")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AssociateListingWithUser(int listid, string userid)
         {
             //take in listid and associate with userid
@@ -96,6 +105,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// </example>
         [HttpPost]
         [Route("api/listingdata/UnAssociateListingWithUser/{listid}/{userid}")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UnAssociateListingWithUser(int listid, string userid)
         {
             //take in listid and associate with userid
@@ -139,7 +149,8 @@ namespace MHC_Hospital_Redesign.Controllers
                 ListDescription = Listing.ListDescription,
                 ListRequirements = Listing.ListRequirements,
                 ListLocation = Listing.ListLocation,
-                DepartmentID = Listing.DepartmentID
+                DepartmentID = Listing.Department.DId,
+                DepartmentName = Listing.Department.DepartmentName
 
             };
 
@@ -169,6 +180,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateListing(int id, Listing listing)
         {
             Debug.WriteLine("This is the update listing method");
@@ -227,6 +239,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// </example>
         [ResponseType(typeof(Listing))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddListing(Listing listing)
         {
             if (!ModelState.IsValid)
@@ -255,6 +268,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// </example>
         [ResponseType(typeof(Listing))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteListing(int id)
         {
             Listing listing = db.Listings.Find(id);

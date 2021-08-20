@@ -1,24 +1,24 @@
 ﻿@model MHC_Hospital_Redesign.Models.ViewModels.DetailsListing
+
 @{
     ViewBag.Title = "Details";
 }
-<div>
-    <ul>
-        <li><a href="/Listing/List">Back</a></li>
-        <li><a href="/Listing/Edit/@Model.SelectedListing.ListID">Edit</a></li>
-        <li><a href="/Listing/DeleteConfirm/@Model.SelectedListing.ListID">Delete</a></li>
-    </ul>
+<div class="list-nav">
+    <a href="/Listing/List" class="btn btn-primary">Back to List</a>
+    <a href="/Listing/Edit/@Model.SelectedListing.ListID" class="btn btn-primary">Edit</a>
+    <a href="/Listing/DeleteConfirm/@Model.SelectedListing.ListID" class="btn btn-danger">Delete</a>
 </div>
 
 <h2>@Model.SelectedListing.ListTitle</h2>
 <p>@Model.SelectedListing.ListDate</p>
 <p>Location: @Model.SelectedListing.ListLocation</p></ br>
+<p>Department: @Model.SelectedListing.DepartmentName</p>
 
 <h3>Description</h3>
-<p>@Model.SelectedListing.ListDescription</p>
+<p>@Html.Raw(@Model.SelectedListing.ListDescription)</p>
 
 <h3>Requirements</h3>
-<p>@Model.SelectedListing.ListRequirements</p>
+<p>@Html.Raw(@Model.SelectedListing.ListRequirements)</p>
 
 <h3>Assigned Volunteer Users:</h3>
 
@@ -35,5 +35,5 @@
                 <option value="@newuser.UserID">@newuser.FirstName @newuser.LastName</option>
             }
     </select>
-    <input type="submit" value="Add Volunteer" />
+        <input type="submit" value="Add Volunteer" class="btn btn-success" />
 </form>

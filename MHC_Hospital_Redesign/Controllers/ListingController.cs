@@ -58,12 +58,22 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Listing/List
-        public ActionResult List()
+        public ActionResult List(string SearchKey = null)
         {
             // objective: communicate with listing data api to retrieve a list of volunteer listings
 
+            // checks if user is logged in and admin for rendering
+            ListListing ViewModel = new ListListing();
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin")) ViewModel.IsAdmin = true; else ViewModel.IsAdmin = false;
+
             // establish URL communication
             string url = "listingdata/listlistings";
+
+            if (SearchKey != null)
+            {
+                url += "?SearchKey=" + SearchKey;
+            }
+
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response code is ");
@@ -118,6 +128,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         //POST: Listing/Associate/{id}?UserID={UserID}
         [HttpPost]
+        [Authorize(Roles ="Admin")]
         public ActionResult Associate(int id, string UserID)
         {
             Debug.WriteLine("Attempting to associate ListID : " + id + " with user " + UserID);
@@ -133,6 +144,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         //GET: Listing/UnAssociate/{id}?UserID={UserID}
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult UnAssociate(int id, string UserID)
         {
             Debug.WriteLine("Attempting to unassociate ListID : " + id + " with user " + UserID);
@@ -148,16 +160,31 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
         // GET: Listing/New
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
-        { 
+        {
+            //using listing dto for validation
+            UpdateListing ViewModel = new UpdateListing();
 
-            return View();
+            //information about all departments in the system
+            //GET api/departmentdata/listdepartments
+
+            string url = "departmentdata/listdepartments/";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<DepartmentDto> DeptOptions = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+
+            ViewModel.DeptOptions = DeptOptions;
+
+            return View(ViewModel);
         }
 
         // POST: Listing/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Listing listing)
         {
+            // gets the asp.net application cookie to authenticate on the webapi level
+            GetApplicationCookie();
 
             // objective: add a new listing into the system using the API
             // curl -d @listing.json -H "Content-Type:application/json" https://localhost:44338/api/listingdata/addlisting
@@ -183,8 +210,11 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Listing/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
+            UpdateListing ViewModel = new UpdateListing();
+
             // objective: users are able to find the listing to edit
 
             // establish URL communication
@@ -193,14 +223,27 @@ namespace MHC_Hospital_Redesign.Controllers
 
             // parse content response
             ListingDto SelectedListing = response.Content.ReadAsAsync<ListingDto>().Result;
+            ViewModel.SelectedListing = SelectedListing;
 
-            return View(SelectedListing);
+            // all departments to choose from when updating
+            url = "departmentdata/listdepartments/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<DepartmentDto> DeptOptions = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+
+            ViewModel.DeptOptions = DeptOptions;
+
+            return View(ViewModel);
         }
 
         // POST: Listing/Update/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Listing listing)
         {
+
+            // gets the asp.net application cookie to authenticate on the webapi level
+            GetApplicationCookie();
+
             Debug.WriteLine("The json payload is: ");
             Debug.WriteLine(listing.ListTitle);
 
@@ -230,6 +273,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Listing/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "listingdata/findlisting/" + id;
@@ -241,8 +285,12 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Listing/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
+            // gets the asp.net application cookie to authenticate on the webapi level
+            GetApplicationCookie();
+
             // objective: delete a listing from the system
             // curl api/listingdata/deletelisting -d ""
 

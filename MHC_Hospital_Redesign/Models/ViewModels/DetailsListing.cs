@@ -10,5 +10,6 @@ namespace MHC_Hospital_Redesign.Models.ViewModels
         public ListingDto SelectedListing { get; set; }
         public IEnumerable<ApplicationUserDto> AssignedUsers { get; set; }
         public IEnumerable<ApplicationUserDto> AvailableUsers { get; set; }
+        public IEnumerable<DepartmentDto> Departments { get; set; }
     }
 }
