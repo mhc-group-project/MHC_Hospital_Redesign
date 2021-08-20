@@ -30,7 +30,7 @@ namespace MHC_Hospital_Redesign.Controllers
         };
 
         client = new HttpClient(handler);
-        client.BaseAddress = new Uri("https://localhost:44338/api/");
+        client.BaseAddress = new Uri("http://mhcredesign-env.eba-skfg7g3r.us-east-2.elasticbeanstalk.com/api/");
     }
         /// <summary>
         /// Grabs the authentication cookie sent to this controller.
@@ -67,8 +67,8 @@ namespace MHC_Hospital_Redesign.Controllers
         public ActionResult List(string Search = null)
         {
             //Objective : communicate without our faq data api to retrive a list of faqs
-            //curl https://localhost:44384/api/faqdata/listfaqs
-           
+            //curl http://mhcredesign-env.eba-skfg7g3r.us-east-2.elasticbeanstalk.com/listfaqs
+
             ListFaq ViewModel = new ListFaq();
             if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 ViewModel.IsAdmin = true;
@@ -147,7 +147,7 @@ namespace MHC_Hospital_Redesign.Controllers
                 ViewModel.IsAdmin = true;
             else ViewModel.IsAdmin = false;
             //Objective : communicate without our aircraft data api to retrive  one aircraft
-            //curl https://localhost:44384/api/faqdata/findfaq/{id}
+            //curl http://mhcredesign-env.eba-skfg7g3r.us-east-2.elasticbeanstalk.com/api/faqdata/findfaq/{id}
 
 
             string url = "faqdata/findfaq/" + id;
@@ -260,7 +260,7 @@ namespace MHC_Hospital_Redesign.Controllers
             GetApplicationCookie();//get token credentials
             Debug.WriteLine("the json payload is : ");
             //objective: AdditionalMetadataAttribute a new faq into our system using API
-            //curl -H "Content-Type:application/json" -d @aircraft.json https://localhost:44384/api/faqdata/addfaq
+            //curl -H "Content-Type:application/json" -d @aircraft.json http://mhcredesign-env.eba-skfg7g3r.us-east-2.elasticbeanstalk.com//api/faqdata/addfaq
             string url = "faqdata/addfaq";
 
 

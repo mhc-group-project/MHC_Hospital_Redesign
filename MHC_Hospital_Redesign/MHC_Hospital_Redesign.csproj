@@ -231,6 +231,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\AWSConnector.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Ecard.cs" />
     <Compile Include="Models\Feedback.cs" />

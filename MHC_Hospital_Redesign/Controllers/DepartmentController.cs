@@ -23,7 +23,7 @@ namespace MHC_Hospital_Redesign.Controllers
                 AllowAutoRedirect = false
             };
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44338/api/");
+            client.BaseAddress = new Uri("http://mhcredesign-env.eba-skfg7g3r.us-east-2.elasticbeanstalk.com/api/");
             client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
 
