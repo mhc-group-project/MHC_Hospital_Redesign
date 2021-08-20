@@ -41,8 +41,8 @@ The Volunter Listings feature displays all available volunteer listings in the h
 - Users: information about the users are displayed in associated listings and can be unassociated with a particular listing
 
 ### Justin's Feature Summary
-The patient e-card feature allows users to send virtual greeting cards to patients at the hospital. It consists of a 1-M relationship between the Template Entity and the Ecard Entity. The user can create a new e-card by selecting a template and filling in further details (senders name, patients name and message). 
-- [x] Template - The admin can create, update and delete a template. While a user can view a list of templates and choose a template when creating a new e-card. 
+The patient e-card feature allows users to send virtual greeting cards to patients at the hospital. It consists of a 1-M relationship between the Template Entity and the Ecard Entity. The user can create a new e-card by selecting a template and filling in further details (senders name, patients name and message). Each e-card will also have a custom image and css styling based on the template selected by the user.
+- [x] Template - The admin can create, update and delete a template. The admin can also upload a custom image and custom css file for each template. While a user can view a list of templates and choose a template when creating a new e-card. 
 - [x] Ecard -  A user can create a new e-card while an admin can update, view and delete an e-card. 
 
 
